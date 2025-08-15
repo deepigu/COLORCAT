@@ -322,6 +322,7 @@ em {
 
 .header.scrolled {
   background: rgba(30, 58, 138, 0.95);
+	border-bottom: 2px solid var(--primary-yellow); 
   backdrop-filter: blur(20px);
 }
 
@@ -997,3 +998,4 @@ em {
     opacity: 1;
   }
 }
+
