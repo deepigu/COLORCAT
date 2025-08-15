@@ -444,4 +444,72 @@
         }
 
         createRippleEffect(e) {
-            if (pref
+
+       if (prefersReducedMotion()) return;
+
+            const button = e.currentTarget;
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.height, rect.width);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.cssText = `
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                position: absolute;
+                background: rgba(255, 255, 255, 0.5);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+            `;
+
+            // Add ripple keyframes if not already present
+            if (!document.querySelector('#ripple-keyframes')) {
+                const style = document.createElement('style');
+                style.id = 'ripple-keyframes';
+                style.textContent = `
+                    @keyframes ripple {
+                        to {
+                            transform: scale(4);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            // Ensure button has relative positioning
+            const originalPosition = getComputedStyle(button).position;
+            if (originalPosition === 'static') {
+                button.style.position = 'relative';
+            }
+
+            button.appendChild(ripple);
+
+            // Remove ripple after animation
+            setTimeout(() => {
+                if (ripple && ripple.parentNode) {
+                    ripple.parentNode.removeChild(ripple);
+                }
+            }, 600);
+        }
+    }
+
+    // ==========================================================================
+    // INITIALIZATION
+    // ==========================================================================
+
+    // Initialize all features when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+        new MobileNavigation();
+        new SmoothScrolling();
+        new HeaderScrollEffects();
+        new ScrollAnimations();
+        new InteractiveElements();
+    });
+
+})();
