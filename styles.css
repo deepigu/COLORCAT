@@ -918,7 +918,7 @@ em {
 
 @media (prefers-contrast: high) {
   :root {
-    --primary-gradient: var(--primary-gradient);
+    --primary-gradient: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100 ;
     --secondary-gradient: linear-gradient(135deg, var(--secondary-purple) 0%, var(--primary-blue) 100%);
     --accent-gradient: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
   }
@@ -986,3 +986,4 @@ em {
   }
 
 }
+
