@@ -421,8 +421,7 @@ em {
     left: -100%;
     width: 100%;
     height: 100vh;
-    background: var(--primary-yellow);
-  --accent-blue: var(--black);
+    background: var(--light-bg) ;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -987,5 +986,6 @@ em {
   }
 
 }
+
 
 
